@@ -1,5 +1,5 @@
+from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.http import JsonResponse
 import json
 from .phishing_url_detection import DETECTION
 
@@ -12,7 +12,7 @@ class URLPredictionApiView(APIView):
 		detection = DETECTION()
 		# CALL THE DECTECTION METHOD HERE
 		prediction = detection.featureExtractions(url)
-		return JsonResponse({"success": True, "detection":prediction}, safe=False)
+		return Response({"success": True, "detection":prediction})
 
 
 

@@ -97,6 +97,7 @@ class DETECTION:
     def web_traffic(self,url):
         try:
             url = urllib.parse.quote(url)
+            # not a valid site: "http://data.alexa.com/data
             rank = \
                 BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(),
                               "xml").find("REACH")['RANK']
@@ -202,7 +203,7 @@ class DETECTION:
             dns = 1
 
         features.append(dns)
-        features.append(detection.web_traffic(url))
+        # features.append(detection.web_traffic(url))
         features.append(1 if dns == 1 else detection.domainAge(domain_name))
         features.append(1 if dns == 1 else detection.domainEnd(domain_name))
 
